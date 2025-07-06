@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .  # Use the current directory as the build context
+      dockerfile: Dockerfile  # Specify the Dockerfile to use
+    ports:
+      - "8080:8080"  # Map port 8080 on the host to port 8080 in the container
+    command: ["./zadatak-filip-janjesic-app"]  # Specify the command to run after the container starts
+    environment:
+      - PORT=8080  # Set the PORT environment variable for the application
+      - DATABASE_URL=sqlite:./notes.db  # Set the database URL (could be changed to a different DB in production)
+      - JWT_SECRET=mytestcode  # Set the JWT secret key for your application
+    restart: unless-stopped  # Restart the app unless explicitly stopped
